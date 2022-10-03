@@ -4,6 +4,7 @@ dependencies {
 	compile 'com.github.GTNewHorizons:OpenComputers:1.7.7.2-GTNH:dev'
 	compile("com.github.GTNewHorizons:EnderIO:2.3.1.35:dev") {
         transitive = false
+		}
 	compile("curse.maven:cofh-core-69162:2388751")
 
 }
