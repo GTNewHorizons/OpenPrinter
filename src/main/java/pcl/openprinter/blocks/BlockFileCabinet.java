@@ -1,12 +1,8 @@
 package pcl.openprinter.blocks;
 
-import java.util.Random;
-
-import pcl.openprinter.OpenPrinter;
-import pcl.openprinter.tileentity.FileCabinetTE;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,141 +17,148 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import pcl.openprinter.OpenPrinter;
+import pcl.openprinter.tileentity.FileCabinetTE;
 
 public class BlockFileCabinet extends BlockContainer {
-	private Random random;
-	
-	@SideOnly(Side.CLIENT)
-	public static IIcon sideIcon;
-	@SideOnly(Side.CLIENT)
-	public static IIcon frontIcon;
-	
-	public BlockFileCabinet() {
-		super(Material.iron );
-		setCreativeTab(OpenPrinter.CreativeTab);
-		setBlockName("filecabinet");
-		setHardness(.5f);
-		random = new Random();
-	}
+    private Random random;
 
-	@Override
-	public void breakBlock (World world, int x, int y, int z, Block block, int meta) {
-		FileCabinetTE tileEntity = (FileCabinetTE) world.getTileEntity(x, y, z);
-		dropContent(tileEntity, world, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
-		super.breakBlock(world, x, y, z, block, meta);
-	}
+    @SideOnly(Side.CLIENT)
+    public static IIcon sideIcon;
 
-	public void dropContent(IInventory chest, World world, int xCoord, int yCoord, int zCoord) {
-		if (chest == null)
-			return;
+    @SideOnly(Side.CLIENT)
+    public static IIcon frontIcon;
 
-		for (int i1 = 0; i1 < chest.getSizeInventory(); ++i1) {
-			ItemStack itemstack = chest.getStackInSlot(i1);
+    public BlockFileCabinet() {
+        super(Material.iron);
+        setCreativeTab(OpenPrinter.CreativeTab);
+        setBlockName("filecabinet");
+        setHardness(.5f);
+        random = new Random();
+    }
 
-			if (itemstack != null) {
-				float offsetX = random.nextFloat() * 0.8F + 0.1F;
-				float offsetY = random.nextFloat() * 0.8F + 0.1F;
-				float offsetZ = random.nextFloat() * 0.8F + 0.1F;
-				EntityItem entityitem;
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
+        FileCabinetTE tileEntity = (FileCabinetTE) world.getTileEntity(x, y, z);
+        dropContent(tileEntity, world, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+        super.breakBlock(world, x, y, z, block, meta);
+    }
 
-				for (; itemstack.stackSize > 0; world.spawnEntityInWorld(entityitem)) {
-					int stackSize = random.nextInt(21) + 10;
-					if (stackSize > itemstack.stackSize)
-						stackSize = itemstack.stackSize;
+    public void dropContent(IInventory chest, World world, int xCoord, int yCoord, int zCoord) {
+        if (chest == null) return;
 
-					itemstack.stackSize -= stackSize;
-					entityitem = new EntityItem(world, (double)((float)xCoord + offsetX), (double)((float)yCoord + offsetY), (double)((float)zCoord + offsetZ), new ItemStack(itemstack.getItem(), stackSize, itemstack.getItemDamage()));
+        for (int i1 = 0; i1 < chest.getSizeInventory(); ++i1) {
+            ItemStack itemstack = chest.getStackInSlot(i1);
 
-					float velocity = 0.05F;
-					entityitem.motionX = (double)((float)random.nextGaussian() * velocity);
-					entityitem.motionY = (double)((float)random.nextGaussian() * velocity + 0.2F);
-					entityitem.motionZ = (double)((float)random.nextGaussian() * velocity);
+            if (itemstack != null) {
+                float offsetX = random.nextFloat() * 0.8F + 0.1F;
+                float offsetY = random.nextFloat() * 0.8F + 0.1F;
+                float offsetZ = random.nextFloat() * 0.8F + 0.1F;
+                EntityItem entityitem;
 
-					if (itemstack.hasTagCompound())
-						entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
-				}
-			}
-		}
-	}
+                for (; itemstack.stackSize > 0; world.spawnEntityInWorld(entityitem)) {
+                    int stackSize = random.nextInt(21) + 10;
+                    if (stackSize > itemstack.stackSize) stackSize = itemstack.stackSize;
 
-	@Override
-	public boolean isOpaqueCube() {
-		return !OpenPrinter.render3D;
+                    itemstack.stackSize -= stackSize;
+                    entityitem = new EntityItem(
+                            world,
+                            (double) ((float) xCoord + offsetX),
+                            (double) ((float) yCoord + offsetY),
+                            (double) ((float) zCoord + offsetZ),
+                            new ItemStack(itemstack.getItem(), stackSize, itemstack.getItemDamage()));
 
-	}
+                    float velocity = 0.05F;
+                    entityitem.motionX = (double) ((float) random.nextGaussian() * velocity);
+                    entityitem.motionY = (double) ((float) random.nextGaussian() * velocity + 0.2F);
+                    entityitem.motionZ = (double) ((float) random.nextGaussian() * velocity);
 
-	@Override
-	public boolean renderAsNormalBlock() {
-		return !OpenPrinter.render3D;
-	}
+                    if (itemstack.hasTagCompound())
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)
+                                itemstack.getTagCompound().copy());
+                }
+            }
+        }
+    }
 
-	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float clickX, float clickY, float clickZ) {
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		if (tileEntity == null || player.isSneaking()) {
-			return false;
-		}
-		// code to open gui explained later		
-		player.openGui(OpenPrinter.instance, 5, world, x, y, z);
-		return true;
-	}
+    @Override
+    public boolean isOpaqueCube() {
+        return !OpenPrinter.render3D;
+    }
 
-	@Override
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
-	{
-		int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
-		par1World.setBlockMetadataWithNotify(par2, par3, par4, l + 1, 2);
-	}
+    @Override
+    public boolean renderAsNormalBlock() {
+        return !OpenPrinter.render3D;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister registry) {
-		registry.registerIcon(OpenPrinter.MODID + ":filingcabinet");
-	}
+    @Override
+    public boolean onBlockActivated(
+            World world,
+            int x,
+            int y,
+            int z,
+            EntityPlayer player,
+            int metadata,
+            float clickX,
+            float clickY,
+            float clickZ) {
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if (tileEntity == null || player.isSneaking()) {
+            return false;
+        }
+        // code to open gui explained later
+        player.openGui(OpenPrinter.instance, 5, world, x, y, z);
+        return true;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister ir)
-	{
-		sideIcon = ir.registerIcon(OpenPrinter.MODID + ":filingcabinet_bottom");
-		frontIcon = ir.registerIcon(OpenPrinter.MODID + ":filingcabinet_front");
-	}
+    @Override
+    public void onBlockPlacedBy(
+            World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack) {
+        int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, l + 1, 2);
+    }
 
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int i, int j)
-	{
-		switch (i)
-		{
-		case 2: 
-			if (j == 1)
-			{
-				return frontIcon;
-			}
-			return sideIcon;
-		case 3: 
-			if (j == 0)
-				return frontIcon;
-			if (j == 3) {
-				return frontIcon;
-			}
-			return sideIcon;
-		case 4: 
-			if (j == 4)
-			{
-				return frontIcon;
-			}
-			return sideIcon;
-		case 5: 
-			if (j == 2)
-			{
-				return frontIcon;
-			}
-			return sideIcon;
-		}
-		return sideIcon;
-	}
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister registry) {
+        registry.registerIcon(OpenPrinter.MODID + ":filingcabinet");
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new FileCabinetTE();
-	}
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister ir) {
+        sideIcon = ir.registerIcon(OpenPrinter.MODID + ":filingcabinet_bottom");
+        frontIcon = ir.registerIcon(OpenPrinter.MODID + ":filingcabinet_front");
+    }
 
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int i, int j) {
+        switch (i) {
+            case 2:
+                if (j == 1) {
+                    return frontIcon;
+                }
+                return sideIcon;
+            case 3:
+                if (j == 0) return frontIcon;
+                if (j == 3) {
+                    return frontIcon;
+                }
+                return sideIcon;
+            case 4:
+                if (j == 4) {
+                    return frontIcon;
+                }
+                return sideIcon;
+            case 5:
+                if (j == 2) {
+                    return frontIcon;
+                }
+                return sideIcon;
+        }
+        return sideIcon;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World var1, int var2) {
+        return new FileCabinetTE();
+    }
 }
