@@ -1,9 +1,9 @@
 [{
-	"modid": "openprinter",
-	"name": "OpenPrinter",
+	"modid": "${modId}",
+	"name": "${modName}",
 	"description": "OpenPrinter for OpenComputers.",
- 	"version": "${version}",
- 	"mcversion": "${mcversion}",
+	"version": "${modVersion}",
+	"mcversion": "${minecraftVersion}",
 	"url": "",
 	"updateUrl": "",
 	"authors": ["Michiyo"],
