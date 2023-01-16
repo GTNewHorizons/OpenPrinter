@@ -29,7 +29,7 @@ import pcl.openprinter.network.PacketHandler;
 @Mod(
         modid = OpenPrinter.MODID,
         name = "OpenPrinter",
-        version = BuildInfo.versionNumber + "." + BuildInfo.buildNumber,
+        version = BuildInfo.versionNumber,
         dependencies = "required-after:OpenComputers@[1.4.0,)")
 public class OpenPrinter {
 
