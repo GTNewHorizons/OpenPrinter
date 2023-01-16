@@ -14,7 +14,7 @@ public class BuildInfo {
     public static final String modID = "openprinter";
 
     public static final String versionNumber = "GRADLETOKEN_VERSION";
-    
+
     @Deprecated
     public static final String buildNumber = "0";
 
