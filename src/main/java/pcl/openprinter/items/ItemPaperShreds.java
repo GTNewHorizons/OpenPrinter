@@ -4,6 +4,7 @@
 package pcl.openprinter.items;
 
 import net.minecraft.item.Item;
+
 import pcl.openprinter.OpenPrinter;
 
 /**
@@ -11,6 +12,7 @@ import pcl.openprinter.OpenPrinter;
  *
  */
 public class ItemPaperShreds extends Item {
+
     public ItemPaperShreds() {
         super();
         maxStackSize = 64;

@@ -1,10 +1,8 @@
 package pcl.openprinter.blocks;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -22,10 +20,15 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import pcl.openprinter.OpenPrinter;
 import pcl.openprinter.tileentity.PrinterTE;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPrinter extends BlockContainer {
+
     private Random random;
 
     @SideOnly(Side.CLIENT)
@@ -83,8 +86,8 @@ public class BlockPrinter extends BlockContainer {
         }
     }
 
-    public void addCollisionBoxesToList(
-            World world, int x, int y, int z, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_) {
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB p_149743_5_, List p_149743_6_,
+            Entity p_149743_7_) {
         this.setBlockBoundsBasedOnState(world, x, y, z);
         super.addCollisionBoxesToList(world, x, y, z, p_149743_5_, p_149743_6_, p_149743_7_);
     }
@@ -126,8 +129,7 @@ public class BlockPrinter extends BlockContainer {
                     entityitem.motionZ = (double) ((float) random.nextGaussian() * velocity);
 
                     if (itemstack.hasTagCompound())
-                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)
-                                itemstack.getTagCompound().copy());
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                 }
             }
         }
@@ -144,16 +146,8 @@ public class BlockPrinter extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world,
-            int x,
-            int y,
-            int z,
-            EntityPlayer player,
-            int metadata,
-            float clickX,
-            float clickY,
-            float clickZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float clickX,
+            float clickY, float clickZ) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking()) {
             return false;

@@ -5,20 +5,21 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 import pcl.openprinter.gui.PrintedPaperSlot;
 
 public class FolderContainer extends Container {
+
     /** The Item Inventory for this Container, only needed if you want to reference isUseableByPlayer */
     public final FolderInventory inventory;
 
-    /** Using these will make transferStackInSlot easier to understand and implement
-     * INV_START is the index of the first slot in the Player's Inventory, so our
-     * InventoryItem's number of slots (e.g. 5 slots is array indices 0-4, so start at 5)
-     * Notice how we don't have to remember how many slots we made? We can just use
-     * InventoryItem.INV_SIZE and if we ever change it, the Container updates automatically. */
-    private static final int INV_START = FolderInventory.INV_SIZE,
-            INV_END = INV_START + 26,
-            HOTBAR_START = INV_END + 1,
+    /**
+     * Using these will make transferStackInSlot easier to understand and implement INV_START is the index of the first
+     * slot in the Player's Inventory, so our InventoryItem's number of slots (e.g. 5 slots is array indices 0-4, so
+     * start at 5) Notice how we don't have to remember how many slots we made? We can just use InventoryItem.INV_SIZE
+     * and if we ever change it, the Container updates automatically.
+     */
+    private static final int INV_START = FolderInventory.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1,
             HOTBAR_END = HOTBAR_START + 8;
 
     // If you're planning to add armor slots, put those first like this:
@@ -100,9 +101,8 @@ public class FolderContainer extends Container {
     }
 
     /**
-     * You should override this method to prevent the player from moving the stack that
-     * opened the inventory, otherwise if the player moves it, the inventory will not
-     * be able to save properly
+     * You should override this method to prevent the player from moving the stack that opened the inventory, otherwise
+     * if the player moves it, the inventory will not be able to save properly
      */
     @Override
     public ItemStack slotClick(int slot, int button, int flag, EntityPlayer player) {

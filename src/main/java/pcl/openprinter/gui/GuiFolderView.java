@@ -3,8 +3,6 @@
  */
 package pcl.openprinter.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -14,8 +12,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Caitlyn
@@ -34,10 +36,12 @@ public class GuiFolderView extends GuiScreen {
     private GuiFolderView.NextPageButton buttonNextPage;
     private GuiFolderView.NextPageButton buttonPreviousPage;
 
-    public static final ResourceLocation folderView =
-            new ResourceLocation("openprinter", "textures/gui/folderView.png");
-    public static final ResourceLocation folderViewEmpty =
-            new ResourceLocation("openprinter", "textures/gui/folderViewEmpty.png");
+    public static final ResourceLocation folderView = new ResourceLocation(
+            "openprinter",
+            "textures/gui/folderView.png");
+    public static final ResourceLocation folderViewEmpty = new ResourceLocation(
+            "openprinter",
+            "textures/gui/folderViewEmpty.png");
 
     public static String limit(String value, int length) {
         StringBuilder buf = new StringBuilder(value);
@@ -77,10 +81,7 @@ public class GuiFolderView extends GuiScreen {
 
         if (stack.hasTagCompound()) {
             if (stack.getTagCompound().hasKey("ItemInventory", Constants.NBT.TAG_LIST)
-                    && stack.getTagCompound()
-                                    .getTagList("ItemInventory", Constants.NBT.TAG_COMPOUND)
-                                    .tagCount()
-                            > 0) {
+                    && stack.getTagCompound().getTagList("ItemInventory", Constants.NBT.TAG_COMPOUND).tagCount() > 0) {
                 this.mc.renderEngine.bindTexture(folderView);
             } else {
                 this.mc.renderEngine.bindTexture(folderViewEmpty);
@@ -118,24 +119,14 @@ public class GuiFolderView extends GuiScreen {
 
             if (this.currPage >= this.pageCount - 1) this.buttonNextPage.visible = false;
             else this.buttonNextPage.visible = true;
-            for (int l = 0;
-                    l
-                            <= ItemInventory.getCompoundTagAt(this.currPage)
-                                    .getCompoundTag("tag")
-                                    .func_150296_c()
-                                    .size();
-                    l++) {
-                if (ItemInventory.getCompoundTagAt(this.currPage)
-                                .getCompoundTag("tag")
-                                .getDouble("version")
-                        == 2.0) {
-                    String output = ItemInventory.getCompoundTagAt(this.currPage)
-                            .getCompoundTag("tag")
+            for (int l = 0; l <= ItemInventory.getCompoundTagAt(this.currPage).getCompoundTag("tag").func_150296_c()
+                    .size(); l++) {
+                if (ItemInventory.getCompoundTagAt(this.currPage).getCompoundTag("tag").getDouble("version") == 2.0) {
+                    String output = ItemInventory.getCompoundTagAt(this.currPage).getCompoundTag("tag")
                             .getString("line" + l);
                     String[] parts = output.split("∞");
                     if (parts.length > 1) {
-                        Integer outleng =
-                                parts[0].replaceAll("(?:§[0-9a-fk-or])+", "").length();
+                        Integer outleng = parts[0].replaceAll("(?:§[0-9a-fk-or])+", "").length();
                         if (outleng > 30) {
                             parts[0] = limit(parts[0], 30);
                         }
@@ -149,7 +140,10 @@ public class GuiFolderView extends GuiScreen {
                                     color);
                         } else {
                             mc.fontRenderer.drawString(
-                                    parts[0], width / 2 - xSizeOfTexture / 2 + 6 + 10, height / 2 - offset, color);
+                                    parts[0],
+                                    width / 2 - xSizeOfTexture / 2 + 6 + 10,
+                                    height / 2 - offset,
+                                    color);
                         }
                         offset = offset - 10;
                     }
@@ -160,19 +154,15 @@ public class GuiFolderView extends GuiScreen {
                             width / 2,
                             height / 2 - 110,
                             0x000000);
-                    String output = ItemInventory.getCompoundTagAt(this.currPage)
-                            .getCompoundTag("tag")
+                    String output = ItemInventory.getCompoundTagAt(this.currPage).getCompoundTag("tag")
                             .getString("line" + l);
-                    Integer outleng =
-                            output.replaceAll("(?:§[0-9a-fk-or])+", "").length();
+                    Integer outleng = output.replaceAll("(?:§[0-9a-fk-or])+", "").length();
                     if (outleng > 30) {
                         output = limit(output, 30);
                     }
-                    Integer color = ItemInventory.getCompoundTagAt(this.currPage)
-                            .getCompoundTag("tag")
+                    Integer color = ItemInventory.getCompoundTagAt(this.currPage).getCompoundTag("tag")
                             .getInteger("color" + l);
-                    String alignment = ItemInventory.getCompoundTagAt(this.currPage)
-                            .getCompoundTag("tag")
+                    String alignment = ItemInventory.getCompoundTagAt(this.currPage).getCompoundTag("tag")
                             .getString("alignment" + l);
                     if (alignment.equalsIgnoreCase("center")) {
                         mc.fontRenderer.drawString(
@@ -181,8 +171,8 @@ public class GuiFolderView extends GuiScreen {
                                 height / 2 - offset,
                                 color);
                     } else {
-                        mc.fontRenderer.drawString(
-                                output, width / 2 - xSizeOfTexture / 2 + 6, height / 2 - offset, color);
+                        mc.fontRenderer
+                                .drawString(output, width / 2 - xSizeOfTexture / 2 + 6, height / 2 - offset, color);
                     }
                     offset = offset - 10;
                 }
@@ -213,6 +203,7 @@ public class GuiFolderView extends GuiScreen {
 
     @SideOnly(Side.CLIENT)
     static class NextPageButton extends GuiButton {
+
         private final boolean show;
 
         private int x;

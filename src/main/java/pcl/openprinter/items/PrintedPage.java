@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import pcl.openprinter.OpenPrinter;
 import pcl.openprinter.gui.PaperGUI;
 
@@ -29,7 +30,12 @@ public class PrintedPage extends Item {
             return par1ItemStack;
         } else {
             player.openGui(
-                    OpenPrinter.instance, 1, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+                    OpenPrinter.instance,
+                    1,
+                    player.worldObj,
+                    (int) player.posX,
+                    (int) player.posY,
+                    (int) player.posZ);
             PaperGUI.stack = par1ItemStack;
             return par1ItemStack;
         }

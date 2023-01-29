@@ -1,8 +1,7 @@
 package pcl.openprinter.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,10 +16,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import pcl.openprinter.OpenPrinter;
 import pcl.openprinter.tileentity.FileCabinetTE;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFileCabinet extends BlockContainer {
+
     private Random random;
 
     @SideOnly(Side.CLIENT)
@@ -74,8 +77,7 @@ public class BlockFileCabinet extends BlockContainer {
                     entityitem.motionZ = (double) ((float) random.nextGaussian() * velocity);
 
                     if (itemstack.hasTagCompound())
-                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)
-                                itemstack.getTagCompound().copy());
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                 }
             }
         }
@@ -92,16 +94,8 @@ public class BlockFileCabinet extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world,
-            int x,
-            int y,
-            int z,
-            EntityPlayer player,
-            int metadata,
-            float clickX,
-            float clickY,
-            float clickZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float clickX,
+            float clickY, float clickZ) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking()) {
             return false;
@@ -112,8 +106,8 @@ public class BlockFileCabinet extends BlockContainer {
     }
 
     @Override
-    public void onBlockPlacedBy(
-            World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack) {
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving,
+            ItemStack par6ItemStack) {
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
         par1World.setBlockMetadataWithNotify(par2, par3, par4, l + 1, 2);
     }

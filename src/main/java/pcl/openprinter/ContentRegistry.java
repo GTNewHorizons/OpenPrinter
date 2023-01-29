@@ -1,6 +1,5 @@
 package pcl.openprinter;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -9,6 +8,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import pcl.openprinter.blocks.BlockFileCabinet;
 import pcl.openprinter.blocks.BlockPrinter;
 import pcl.openprinter.blocks.BlockShredder;
@@ -24,6 +24,7 @@ import pcl.openprinter.items.PrinterPaperRollRecipe;
 import pcl.openprinter.tileentity.FileCabinetTE;
 import pcl.openprinter.tileentity.PrinterTE;
 import pcl.openprinter.tileentity.ShredderTE;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ContentRegistry {
 
@@ -100,64 +101,78 @@ public class ContentRegistry {
         String blueInk = "dyeBlue";
         ItemStack paper = new ItemStack(Items.paper);
 
-        GameRegistry.addShapelessRecipe(paper, new Object[] {shreddedPaper, new ItemStack(Items.water_bucket)});
+        GameRegistry.addShapelessRecipe(paper, new Object[] { shreddedPaper, new ItemStack(Items.water_bucket) });
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                new ItemStack(printerBlock, 1),
-                "IRI",
-                "MPM",
-                "IRI",
-                'I',
-                "nuggetIron",
-                'R',
-                redstone,
-                'M',
-                microchip,
-                'P',
-                pcb));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        new ItemStack(printerBlock, 1),
+                        "IRI",
+                        "MPM",
+                        "IRI",
+                        'I',
+                        "nuggetIron",
+                        'R',
+                        redstone,
+                        'M',
+                        microchip,
+                        'P',
+                        pcb));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                new ItemStack(shredderBlock, 1), "IRI", "ISI", "IRI", 'I', "nuggetIron", 'R', redstone, 'S', shears));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        new ItemStack(shredderBlock, 1),
+                        "IRI",
+                        "ISI",
+                        "IRI",
+                        'I',
+                        "nuggetIron",
+                        'R',
+                        redstone,
+                        'S',
+                        shears));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(new ItemStack(printerInkBlack, 1), "BBB", " I ", 'B', blackInk, 'I', "nuggetIron"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                new ItemStack(printerInkColor, 1),
-                "RGB",
-                " I ",
-                'R',
-                redInk,
-                'G',
-                greenInk,
-                'B',
-                blueInk,
-                'I',
-                "nuggetIron"));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        new ItemStack(printerInkColor, 1),
+                        "RGB",
+                        " I ",
+                        'R',
+                        redInk,
+                        'G',
+                        greenInk,
+                        'B',
+                        blueInk,
+                        'I',
+                        "nuggetIron"));
 
         GameRegistry.addRecipe(new PrinterPaperRollRecipe());
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                new ItemStack(printerInkColor, 1),
-                "RGB",
-                " Z ",
-                'R',
-                redInk,
-                'G',
-                greenInk,
-                'B',
-                blueInk,
-                'Z',
-                new ItemStack(printerInkColor, 1, OreDictionary.WILDCARD_VALUE)));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        new ItemStack(printerInkColor, 1),
+                        "RGB",
+                        " Z ",
+                        'R',
+                        redInk,
+                        'G',
+                        greenInk,
+                        'B',
+                        blueInk,
+                        'Z',
+                        new ItemStack(printerInkColor, 1, OreDictionary.WILDCARD_VALUE)));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                new ItemStack(printerInkBlack, 1),
-                "BBB",
-                " Z ",
-                'B',
-                blackInk,
-                'Z',
-                new ItemStack(printerInkBlack, 1, OreDictionary.WILDCARD_VALUE)));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        new ItemStack(printerInkBlack, 1),
+                        "BBB",
+                        " Z ",
+                        'B',
+                        blackInk,
+                        'Z',
+                        new ItemStack(printerInkBlack, 1, OreDictionary.WILDCARD_VALUE)));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(folder, 1), "P P", " P ", 'P', paper));
     }

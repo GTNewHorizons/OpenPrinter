@@ -1,12 +1,14 @@
 package pcl.openprinter.client;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
 import pcl.openprinter.ContentRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class CreativeTab extends CreativeTabs {
+
     public CreativeTab(String unlocalizedName) {
         super(unlocalizedName);
     }

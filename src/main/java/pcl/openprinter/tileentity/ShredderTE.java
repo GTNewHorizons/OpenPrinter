@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+
 import pcl.openprinter.ContentRegistry;
 import pcl.openprinter.items.PrintedPage;
 
@@ -21,13 +22,16 @@ import pcl.openprinter.items.PrintedPage;
  *
  */
 public class ShredderTE extends TileEntity implements IInventory, ISidedInventory {
+
     private ItemStack[] shredderItemStacks = new ItemStack[20];
 
     private int processingTime = 0;
 
-    private static final int[] slots_top = new int[] {0};
-    private static final int[] slots_bottom = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-    private static final int[] slots_sides = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
+    private static final int[] slots_top = new int[] { 0 };
+    private static final int[] slots_bottom = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+            18 };
+    private static final int[] slots_sides = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+            18 };
 
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -139,8 +143,7 @@ public class ShredderTE extends TileEntity implements IInventory, ISidedInventor
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        if (i == 0 && itemstack.getItem() instanceof PrintedPage
-                || itemstack.getItem().equals(Items.book)) {
+        if (i == 0 && itemstack.getItem() instanceof PrintedPage || itemstack.getItem().equals(Items.book)) {
             return true;
         }
         return false;

@@ -1,16 +1,17 @@
 package pcl.openprinter;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
+
 import pcl.openprinter.itemrender.ItemPrinterRenderer;
 import pcl.openprinter.tileentity.PrinterContainer;
 import pcl.openprinter.tileentity.PrinterTE;
 import pcl.openprinter.tileentityrender.PrinterRenderer;
+import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
 

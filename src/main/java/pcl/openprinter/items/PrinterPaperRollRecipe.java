@@ -9,9 +9,11 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+
 import pcl.openprinter.ContentRegistry;
 
 public class PrinterPaperRollRecipe implements IRecipe {
+
     @Override
     public boolean matches(InventoryCrafting inventory, World world) {
         if (inventory.getSizeInventory() >= 9) {
@@ -29,8 +31,7 @@ public class PrinterPaperRollRecipe implements IRecipe {
 
             if (emptyCount != 5) return false;
 
-            return stack00.getItem() == Items.paper
-                    && stack00.stackSize == 64
+            return stack00.getItem() == Items.paper && stack00.stackSize == 64
                     && stack01.getItem() == Items.paper
                     && stack01.stackSize == 64
                     && stack10.getItem() == Items.paper

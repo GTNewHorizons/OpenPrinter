@@ -1,10 +1,11 @@
 package pcl.openprinter.network;
 
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.WorldServer;
+
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.WorldServer;
 
 public class GUIFolderMessageHandlerServer implements IMessageHandler<MessageGUIFolder, IMessage> {
 

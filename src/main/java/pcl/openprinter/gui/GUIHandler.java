@@ -7,10 +7,10 @@ package pcl.openprinter.gui;
  * @author Caitlyn
  *
  */
-import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
 import pcl.openprinter.items.FolderContainer;
 import pcl.openprinter.items.FolderInventory;
 import pcl.openprinter.tileentity.FileCabinetContainer;
@@ -19,8 +19,10 @@ import pcl.openprinter.tileentity.PrinterContainer;
 import pcl.openprinter.tileentity.PrinterTE;
 import pcl.openprinter.tileentity.ShredderContainer;
 import pcl.openprinter.tileentity.ShredderTE;
+import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler {
+
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
         if (id == 0) { // Printer Block GUI
@@ -65,8 +67,11 @@ public class GUIHandler implements IGuiHandler {
                 return new ShredderGUI(player.inventory, (ShredderTE) tileEntity);
             }
         } else if (id == 3) {
-            return new GuiFolderInventory((FolderContainer)
-                    new FolderContainer(player, player.inventory, new FolderInventory(player.getHeldItem())));
+            return new GuiFolderInventory(
+                    (FolderContainer) new FolderContainer(
+                            player,
+                            player.inventory,
+                            new FolderInventory(player.getHeldItem())));
         } else if (id == 4) { // Folder view GUI (Client only)
             return new GuiFolderView(world, player);
         } else if (id == 5) {

@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+
 import pcl.openprinter.items.PrintedPage;
 
 /**
@@ -20,13 +21,16 @@ import pcl.openprinter.items.PrintedPage;
  *
  */
 public class FileCabinetTE extends TileEntity implements IInventory, ISidedInventory {
+
     public ItemStack[] fileCabinetItemStacks = new ItemStack[30];
 
     public String name = "";
 
-    private static final int[] slots_top = new int[] {0};
-    private static final int[] slots_bottom = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-    private static final int[] slots_sides = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
+    private static final int[] slots_top = new int[] { 0 };
+    private static final int[] slots_bottom = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+            18 };
+    private static final int[] slots_sides = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+            18 };
 
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -141,9 +145,7 @@ public class FileCabinetTE extends TileEntity implements IInventory, ISidedInven
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        if (i == 0
-                && (itemstack.getItem() instanceof PrintedPage
-                        || itemstack.getItem().equals(Items.book))) {
+        if (i == 0 && (itemstack.getItem() instanceof PrintedPage || itemstack.getItem().equals(Items.book))) {
             return true;
         }
         return false;
@@ -169,53 +171,53 @@ public class FileCabinetTE extends TileEntity implements IInventory, ISidedInven
         return "fileCabinet";
     }
 
-    //	public void updateEntity() {
-    //		boolean flag = this.processingTime > 0;
+    // public void updateEntity() {
+    // boolean flag = this.processingTime > 0;
     //
-    //		if (getStackInSlot(0) != null) {
-    //			++this.processingTime;
-    //			if (this.processingTime > 10) {
-    //				for (int x = 1; x <= 9; x++) { //Loop the 18 output slots checking for a empty on
-    //					if(getStackInSlot(x) != null && getStackInSlot(x).getItem() instanceof pcl.openprinter.items.ItemPaperShreds
+    // if (getStackInSlot(0) != null) {
+    // ++this.processingTime;
+    // if (this.processingTime > 10) {
+    // for (int x = 1; x <= 9; x++) { //Loop the 18 output slots checking for a empty on
+    // if(getStackInSlot(x) != null && getStackInSlot(x).getItem() instanceof pcl.openprinter.items.ItemPaperShreds
     // && getStackInSlot(x).stackSize < 64) {
-    //						if (getStackInSlot(0).getItem().equals(Items.book) ||
+    // if (getStackInSlot(0).getItem().equals(Items.book) ||
     // getStackInSlot(0).getItem().equals(Items.writable_book) ||
     // getStackInSlot(0).getItem().equals(Items.written_book)) {
-    //							if (getStackInSlot(x).stackSize + 3 > 64) {
-    //								if (x < 18) {
-    //									for (int x2 = 1; x2 <= x - 9; x2++) {
-    //										if(getStackInSlot(x2 + 1) == null) {
-    //											this.fileCabinetItemStacks[x + 1] = new ItemStack(ContentRegistry.shreddedPaper);
-    //											if (64 - getStackInSlot(x).stackSize == 1) {
-    //												incStackSize(x2 + 1, 64 - getStackInSlot(x).stackSize);
-    //											}
-    //										} else {
-    //											incStackSize(x2 + 1, 64 - getStackInSlot(x).stackSize);
-    //										}
-    //									}
-    //								}
-    //							}
-    //							incStackSize(x, 3);
-    //						} else {
-    //							incStackSize(x, 1);
-    //						}
-    //						decrStackSize(0, 1);
-    //						break;
-    //					} else if (getStackInSlot(x) == null) {
-    //						this.fileCabinetItemStacks[x] = new ItemStack(ContentRegistry.shreddedPaper);
-    //						if (getStackInSlot(0).getItem().equals(Items.book) ||
+    // if (getStackInSlot(x).stackSize + 3 > 64) {
+    // if (x < 18) {
+    // for (int x2 = 1; x2 <= x - 9; x2++) {
+    // if(getStackInSlot(x2 + 1) == null) {
+    // this.fileCabinetItemStacks[x + 1] = new ItemStack(ContentRegistry.shreddedPaper);
+    // if (64 - getStackInSlot(x).stackSize == 1) {
+    // incStackSize(x2 + 1, 64 - getStackInSlot(x).stackSize);
+    // }
+    // } else {
+    // incStackSize(x2 + 1, 64 - getStackInSlot(x).stackSize);
+    // }
+    // }
+    // }
+    // }
+    // incStackSize(x, 3);
+    // } else {
+    // incStackSize(x, 1);
+    // }
+    // decrStackSize(0, 1);
+    // break;
+    // } else if (getStackInSlot(x) == null) {
+    // this.fileCabinetItemStacks[x] = new ItemStack(ContentRegistry.shreddedPaper);
+    // if (getStackInSlot(0).getItem().equals(Items.book) ||
     // getStackInSlot(0).getItem().equals(Items.writable_book) ||
     // getStackInSlot(0).getItem().equals(Items.written_book)) {
-    //							incStackSize(x, 2);
-    //						}
-    //						decrStackSize(0, 1);
-    //						break;
-    //					}
-    //				}
-    //				this.processingTime = 0;
-    //			}
-    //		}
-    //	}
+    // incStackSize(x, 2);
+    // }
+    // decrStackSize(0, 1);
+    // break;
+    // }
+    // }
+    // this.processingTime = 0;
+    // }
+    // }
+    // }
 
     @Override
     public boolean hasCustomInventoryName() {

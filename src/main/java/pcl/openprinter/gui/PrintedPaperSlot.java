@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 import pcl.openprinter.items.PrintedPage;
 
 public class PrintedPaperSlot extends Slot {
@@ -20,6 +21,7 @@ public class PrintedPaperSlot extends Slot {
         }
         return false;
     }
+
     /**
      * Called when the player picks up an item from an inventory slot
      */

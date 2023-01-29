@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
+
 import pcl.openprinter.OpenPrinter;
 
 /**
@@ -52,7 +53,8 @@ public class FolderInventory implements IInventory {
         readFromNBT(stack.getTagCompound());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#getSizeInventory()
      */
     @Override
@@ -60,7 +62,8 @@ public class FolderInventory implements IInventory {
         return inventory.length;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#getStackInSlot(int)
      */
     @Override
@@ -68,7 +71,8 @@ public class FolderInventory implements IInventory {
         return inventory[slot];
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#decrStackSize(int, int)
      */
     @Override
@@ -87,7 +91,8 @@ public class FolderInventory implements IInventory {
         return stack;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#getStackInSlotOnClosing(int)
      */
     @Override
@@ -97,7 +102,8 @@ public class FolderInventory implements IInventory {
         return stack;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#setInventorySlotContents(int, net.minecraft.item.ItemStack)
      */
     @Override
@@ -112,7 +118,8 @@ public class FolderInventory implements IInventory {
         markDirty();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#getInventoryName()
      */
     @Override
@@ -120,7 +127,8 @@ public class FolderInventory implements IInventory {
         return name;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#hasCustomInventoryName()
      */
     @Override
@@ -128,7 +136,8 @@ public class FolderInventory implements IInventory {
         return true;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#getInventoryStackLimit()
      */
     @Override
@@ -136,7 +145,8 @@ public class FolderInventory implements IInventory {
         return 64;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#markDirty()
      */
     @Override
@@ -152,7 +162,8 @@ public class FolderInventory implements IInventory {
         writeToNBT(invItem.getTagCompound());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#isUseableByPlayer(net.minecraft.entity.player.EntityPlayer)
      */
     @Override
@@ -160,23 +171,25 @@ public class FolderInventory implements IInventory {
         return true;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#openInventory()
      */
     @Override
     public void openInventory() {}
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.inventory.IInventory#closeInventory()
      */
     @Override
     public void closeInventory() {}
 
-    /* (non-Javadoc)
-     * @see net.minecraft.inventory.IInventory#isItemValidForSlot(int, net.minecraft.item.ItemStack)
-     * This method doesn't seem to do what it claims to do, as
-     * items can still be left-clicked and placed in the inventory
-     * even when this returns false
+    /*
+     * (non-Javadoc)
+     * @see net.minecraft.inventory.IInventory#isItemValidForSlot(int, net.minecraft.item.ItemStack) This method doesn't
+     * seem to do what it claims to do, as items can still be left-clicked and placed in the inventory even when this
+     * returns false
      */
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemstack) {

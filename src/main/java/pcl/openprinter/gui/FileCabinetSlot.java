@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 import pcl.openprinter.items.ItemFolder;
 import pcl.openprinter.items.PrintedPage;
 
@@ -16,8 +17,7 @@ public class FileCabinetSlot extends Slot {
 
     public boolean isItemValid(ItemStack itemstack) {
 
-        if (itemstack.getItem() instanceof PrintedPage
-                || itemstack.getItem().equals(Items.book)
+        if (itemstack.getItem() instanceof PrintedPage || itemstack.getItem().equals(Items.book)
                 || itemstack.getItem().equals(Items.paper)
                 || itemstack.getItem().equals(Items.written_book)
                 || itemstack.getItem().equals(Items.writable_book)
@@ -30,6 +30,7 @@ public class FileCabinetSlot extends Slot {
         }
         return false;
     }
+
     /**
      * Called when the player picks up an item from an inventory slot
      */

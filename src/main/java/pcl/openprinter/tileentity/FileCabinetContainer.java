@@ -2,11 +2,13 @@ package pcl.openprinter.tileentity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 import pcl.openprinter.gui.FileCabinetSlot;
 
 /**
@@ -14,14 +16,13 @@ import pcl.openprinter.gui.FileCabinetSlot;
  *
  */
 public class FileCabinetContainer extends Container {
+
     protected FileCabinetTE tileEntity;
     private List<Slot> outputSlots;
     private List<Slot> playerSlots;
     private List<Slot> hotbarSlots;
 
-    private static final int INV_START = 27,
-            INV_END = INV_START + 26,
-            HOTBAR_START = INV_END + 1,
+    private static final int INV_START = 27, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1,
             HOTBAR_END = HOTBAR_START + 8;
 
     public FileCabinetContainer(InventoryPlayer inventoryPlayer, FileCabinetTE tileEntity) {
@@ -112,9 +113,8 @@ public class FileCabinetContainer extends Container {
                 slot = (Slot) this.inventorySlots.get(slotIndex);
                 slotstack = slot.getStack();
 
-                if (slotstack != null
-                        && slotstack.getItem() == is.getItem()
-                        // && !is.getHasSubtypes()
+                if (slotstack != null && slotstack.getItem() == is.getItem()
+                // && !is.getHasSubtypes()
                         && is.getItemDamage() == slotstack.getItemDamage()
                         && ItemStack.areItemStackTagsEqual(is, slotstack)
                         && slotstack.stackSize < slot.getSlotStackLimit()) {
@@ -129,26 +129,27 @@ public class FileCabinetContainer extends Container {
                         merged = true;
                     } else if (slotstack.stackSize < is.getMaxStackSize()
                             && slotstack.stackSize < slot.getSlotStackLimit()) {
-                        // Slot stack size is greater than or equal to the item's max stack size. Most containers are
-                        // this case.
-                        if (slot.getSlotStackLimit() >= is.getMaxStackSize()) {
-                            is.stackSize -= is.getMaxStackSize() - slotstack.stackSize;
-                            slotstack.stackSize = is.getMaxStackSize();
-                            slot.onSlotChanged();
-                            merged = true;
-                        }
-                        // Slot stack size is smaller than the item's normal max stack size. Example: Log Piles
-                        else if (slot.getSlotStackLimit() < is.getMaxStackSize()) {
-                            is.stackSize -= slot.getSlotStackLimit() - slotstack.stackSize;
-                            slotstack.stackSize = slot.getSlotStackLimit();
-                            slot.onSlotChanged();
-                            merged = true;
-                        }
-                    }
+                                // Slot stack size is greater than or equal to the item's max stack size. Most
+                                // containers are
+                                // this case.
+                                if (slot.getSlotStackLimit() >= is.getMaxStackSize()) {
+                                    is.stackSize -= is.getMaxStackSize() - slotstack.stackSize;
+                                    slotstack.stackSize = is.getMaxStackSize();
+                                    slot.onSlotChanged();
+                                    merged = true;
+                                }
+                                // Slot stack size is smaller than the item's normal max stack size. Example: Log Piles
+                                else if (slot.getSlotStackLimit() < is.getMaxStackSize()) {
+                                    is.stackSize -= slot.getSlotStackLimit() - slotstack.stackSize;
+                                    slotstack.stackSize = slot.getSlotStackLimit();
+                                    slot.onSlotChanged();
+                                    merged = true;
+                                }
+                            }
                 }
 
                 if (par4) --slotIndex;
-                else ++slotIndex;
+                else++slotIndex;
             }
         }
 
@@ -177,7 +178,7 @@ public class FileCabinetContainer extends Container {
                 }
 
                 if (par4) --slotIndex;
-                else ++slotIndex;
+                else++slotIndex;
             }
         }
 

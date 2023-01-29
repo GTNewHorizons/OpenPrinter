@@ -4,6 +4,19 @@ package pcl.openprinter;
  * @author Caitlyn
  *
  */
+import java.net.URL;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.config.Configuration;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import pcl.openprinter.client.CreativeTab;
+import pcl.openprinter.gui.GUIHandler;
+import pcl.openprinter.items.PrinterPaperRoll;
+import pcl.openprinter.network.PacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -15,16 +28,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import java.net.URL;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.config.Configuration;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import pcl.openprinter.client.CreativeTab;
-import pcl.openprinter.gui.GUIHandler;
-import pcl.openprinter.items.PrinterPaperRoll;
-import pcl.openprinter.network.PacketHandler;
 
 @Mod(
         modid = OpenPrinter.MODID,
@@ -56,14 +59,12 @@ public class OpenPrinter {
         cfg = new Config(new Configuration(event.getSuggestedConfigurationFile()));
         render3D = cfg.render3D;
 
-        if ((event.getSourceFile().getName().endsWith(".jar") || debug)
-                && event.getSide().isClient()
+        if ((event.getSourceFile().getName().endsWith(".jar") || debug) && event.getSide().isClient()
                 && cfg.enableMUD) {
             logger.info("Registering mod with OpenUpdater");
             try {
                 Class.forName("pcl.mud.OpenUpdater")
-                        .getDeclaredMethod("registerMod", ModContainer.class, URL.class, URL.class)
-                        .invoke(
+                        .getDeclaredMethod("registerMod", ModContainer.class, URL.class, URL.class).invoke(
                                 null,
                                 FMLCommonHandler.instance().findContainerFor(this),
                                 new URL("http://PC-Logix.com/OpenPrinter/get_latest_build.php?mcver=1.7.10"),
@@ -88,9 +89,8 @@ public class OpenPrinter {
         if (event.crafting.getItem() instanceof PrinterPaperRoll) {
             for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++) {
                 ItemStack item = event.craftMatrix.getStackInSlot(i);
-                if (item != null)
-                    event.craftMatrix.setInventorySlotContents(
-                            i, new ItemStack(item.getItem(), 1, item.getItemDamage()));
+                if (item != null) event.craftMatrix
+                        .setInventorySlotContents(i, new ItemStack(item.getItem(), 1, item.getItemDamage()));
             }
         }
     }

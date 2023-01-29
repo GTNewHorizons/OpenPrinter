@@ -3,7 +3,6 @@
  */
 package pcl.openprinter.itemrender;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -13,20 +12,24 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.obj.WavefrontObject;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 /**
  * @author Caitlyn
  *
  */
 public class ItemPrinterRenderer implements IItemRenderer {
+
     private float scale = 1;
     WavefrontObject model = null;
     private final ResourceLocation theTexture = new ResourceLocation("openprinter", "textures/obj/OpenPrinter.png");
 
     public ItemPrinterRenderer(TileEntitySpecialRenderer render, TileEntity TE) {
-        model = (WavefrontObject)
-                AdvancedModelLoader.loadModel(new ResourceLocation("openprinter", "models/printer.obj"));
+        model = (WavefrontObject) AdvancedModelLoader
+                .loadModel(new ResourceLocation("openprinter", "models/printer.obj"));
     }
 
     @Override

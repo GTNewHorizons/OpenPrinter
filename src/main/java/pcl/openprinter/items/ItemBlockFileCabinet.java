@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import pcl.openprinter.tileentity.FileCabinetTE;
 
 public class ItemBlockFileCabinet extends ItemBlock {
@@ -15,23 +16,12 @@ public class ItemBlockFileCabinet extends ItemBlock {
     }
 
     @Override
-    public boolean placeBlockAt(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ,
-            int metadata) {
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ, int metadata) {
         if (super.placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, metadata)) {
             FileCabinetTE tileEntity = (FileCabinetTE) world.getTileEntity(x, y, z);
             if (stack.hasTagCompound()) {
-                tileEntity.name =
-                        stack.getTagCompound().getCompoundTag("display").getString("Name");
+                tileEntity.name = stack.getTagCompound().getCompoundTag("display").getString("Name");
             }
         }
         return true;

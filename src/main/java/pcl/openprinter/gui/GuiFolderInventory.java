@@ -1,7 +1,5 @@
 package pcl.openprinter.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -10,25 +8,33 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
 import pcl.openprinter.items.FolderContainer;
 import pcl.openprinter.items.FolderInventory;
 import pcl.openprinter.network.MessageGUIFolder;
 import pcl.openprinter.network.PacketHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GuiFolderInventory extends GuiContainer {
-    /** x and y size of the inventory window in pixels. Defined as float, passed as int
-     * These are used for drawing the player model. */
+
+    /**
+     * x and y size of the inventory window in pixels. Defined as float, passed as int These are used for drawing the
+     * player model.
+     */
     private float xSize_lo;
 
     private float ySize_lo;
     private GuiTextField text;
     private String name;
 
-    private static final ResourceLocation iconLocation =
-            new ResourceLocation("openprinter", "textures/gui/inventoryitem.png");
+    private static final ResourceLocation iconLocation = new ResourceLocation(
+            "openprinter",
+            "textures/gui/inventoryitem.png");
 
     /** The inventory to render on screen */
     private final FolderInventory inventory;
@@ -45,8 +51,7 @@ public class GuiFolderInventory extends GuiContainer {
         this.text = new GuiTextField(this.fontRendererObj, this.width / 2 - 68, this.height / 2 - 78, 137, 10);
         text.setMaxStringLength(203);
         text.setText("Name");
-        String s = this.inventory.hasCustomInventoryName()
-                ? this.inventory.getInventoryName()
+        String s = this.inventory.hasCustomInventoryName() ? this.inventory.getInventoryName()
                 : StatCollector.translateToLocal(this.inventory.getInventoryName());
         // this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
         this.text.setText(s);

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.*;
+
 import li.cil.oc.api.Network;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
@@ -19,6 +20,7 @@ import li.cil.oc.api.network.ManagedEnvironment;
 import li.cil.oc.api.network.Message;
 import li.cil.oc.api.network.Node;
 import li.cil.oc.api.network.Visibility;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -29,6 +31,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+
 import pcl.openprinter.ContentRegistry;
 import pcl.openprinter.OpenPrinter;
 import pcl.openprinter.items.PrintedPage;
@@ -43,10 +46,8 @@ import pcl.openprinter.items.PrinterPaperRoll;
 public class PrinterTE extends TileEntity implements Environment, IInventory, ISidedInventory {
 
     public Double PrinterFormatVersion = 2.0;
-    protected ComponentConnector node = Network.newNode(this, Visibility.Network)
-            .withComponent(getComponentName())
-            .withConnector(32)
-            .create();
+    protected ComponentConnector node = Network.newNode(this, Visibility.Network).withComponent(getComponentName())
+            .withConnector(32).create();
     protected boolean addedToNetwork = false;
 
     public PrinterTE() {
@@ -70,7 +71,8 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
 
     private void initOCFilesystem() {
         oc_fs = li.cil.oc.api.FileSystem.asManagedEnvironment(
-                li.cil.oc.api.FileSystem.fromClass(OpenPrinter.class, OpenPrinter.MODID, "/lua/printer/"), "printer");
+                li.cil.oc.api.FileSystem.fromClass(OpenPrinter.class, OpenPrinter.MODID, "/lua/printer/"),
+                "printer");
         ((Component) oc_fs().node()).setVisibility(Visibility.Network);
     }
 
@@ -131,9 +133,9 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
     Integer colorUses = 0;
     Integer blackUses = 0;
 
-    private static final int[] slots_top = new int[] {2};
-    private static final int[] slots_bottom = new int[] {3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-    private static final int[] slots_sides = new int[] {0, 1};
+    private static final int[] slots_top = new int[] { 2 };
+    private static final int[] slots_bottom = new int[] { 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+    private static final int[] slots_sides = new int[] { 0, 1 };
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
@@ -196,7 +198,7 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
 
     @Callback
     public Object[] greet(Context context, Arguments args) {
-        return new Object[] {"Lasciate ogne speranza, voi ch'intrate"};
+        return new Object[] { "Lasciate ogne speranza, voi ch'intrate" };
     }
 
     // Real Printer methods follow:
@@ -205,9 +207,9 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
         ItemStack scannedPage = getStackInSlot(13);
 
         if (scannedPage.getItem() instanceof PrintedPage && scannedPage.hasTagCompound()) {
-            return new Object[] {scannedPage.getTagCompound().getString("line" + args.checkInteger(0))};
+            return new Object[] { scannedPage.getTagCompound().getString("line" + args.checkInteger(0)) };
         } else {
-            return new Object[] {false};
+            return new Object[] { false };
         }
     }
 
@@ -225,9 +227,9 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
                     output.put(x, scannedPage.stackTagCompound.getString("line" + x));
                 }
             }
-            return new Object[] {outPageTitle, output};
+            return new Object[] { outPageTitle, output };
         }
-        return new Object[] {false};
+        return new Object[] { false };
     }
 
     @Callback
@@ -248,12 +250,11 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
                             printerItemStacks[x].stackTagCompound.setTag("display", nameTag);
 
                             getStackInSlot(0).setItemDamage(getStackInSlot(0).getItemDamage() + 1);
-                            if (getStackInSlot(0).getItemDamage()
-                                    >= getStackInSlot(0).getMaxDamage()) {
+                            if (getStackInSlot(0).getItemDamage() >= getStackInSlot(0).getMaxDamage()) {
                                 setInventorySlotContents(0, null);
                             }
                             decrStackSize(2, 1);
-                            return new Object[] {true};
+                            return new Object[] { true };
                         }
                     }
                     throw new Exception("No empty output slots.");
@@ -312,32 +313,26 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
                             colors.clear();
                             align.clear();
                             if (getStackInSlot(2).getItem() instanceof PrinterPaperRoll) {
-                                getStackInSlot(2)
-                                        .setItemDamage(getStackInSlot(2).getItemDamage() + 1);
-                                if (getStackInSlot(2).getItemDamage()
-                                        >= getStackInSlot(2).getMaxDamage()) {
+                                getStackInSlot(2).setItemDamage(getStackInSlot(2).getItemDamage() + 1);
+                                if (getStackInSlot(2).getItemDamage() >= getStackInSlot(2).getMaxDamage()) {
                                     setInventorySlotContents(2, null);
                                 }
                             } else {
                                 decrStackSize(2, 1);
                             }
                             if (markColor) {
-                                getStackInSlot(1)
-                                        .setItemDamage(getStackInSlot(1).getItemDamage() + colorUses++);
-                                if (getStackInSlot(1).getItemDamage()
-                                        >= getStackInSlot(1).getMaxDamage()) {
+                                getStackInSlot(1).setItemDamage(getStackInSlot(1).getItemDamage() + colorUses++);
+                                if (getStackInSlot(1).getItemDamage() >= getStackInSlot(1).getMaxDamage()) {
                                     setInventorySlotContents(1, null);
                                 }
                             }
                             if (markBlack) {
-                                getStackInSlot(0)
-                                        .setItemDamage(getStackInSlot(0).getItemDamage() + blackUses);
-                                if (getStackInSlot(0).getItemDamage()
-                                        >= getStackInSlot(0).getMaxDamage()) {
+                                getStackInSlot(0).setItemDamage(getStackInSlot(0).getItemDamage() + blackUses);
+                                if (getStackInSlot(0).getItemDamage() >= getStackInSlot(0).getMaxDamage()) {
                                     setInventorySlotContents(0, null);
                                 }
                             }
-                            return new Object[] {true};
+                            return new Object[] { true };
                         }
                     }
                     throw new Exception("No empty output slots.");
@@ -348,7 +343,7 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
                 throw new Exception("Please load Ink.");
             }
         }
-        return new Object[] {false};
+        return new Object[] { false };
     }
 
     @Callback
@@ -377,25 +372,25 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
         lines.add(args.checkString(0));
         colors.add(color);
         align.add(alignment);
-        return new Object[] {true};
+        return new Object[] { true };
     }
 
     @Callback
     public Object[] setTitle(Context context, Arguments args) {
         pageTitle = args.checkString(0);
-        return new Object[] {true};
+        return new Object[] { true };
     }
 
     @Callback
     public Object[] getPaperLevel(Context context, Arguments args) {
         if (getStackInSlot(2) != null) {
             if (getStackInSlot(2).getItem() instanceof PrinterPaperRoll) {
-                return new Object[] {256 - getStackInSlot(2).getItemDamage()};
+                return new Object[] { 256 - getStackInSlot(2).getItemDamage() };
             } else {
-                return new Object[] {getStackInSlot(2).stackSize};
+                return new Object[] { getStackInSlot(2).stackSize };
             }
         } else {
-            return new Object[] {false};
+            return new Object[] { false };
         }
     }
 
@@ -403,14 +398,12 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
     public Object[] getBlackInkLevel(Context context, Arguments args) {
         if (getStackInSlot(0) != null) {
             if (getStackInSlot(0).getItem() instanceof PrinterInkBlack) {
-                return new Object[] {
-                    OpenPrinter.cfg.printerInkUse - getStackInSlot(0).getItemDamage()
-                };
+                return new Object[] { OpenPrinter.cfg.printerInkUse - getStackInSlot(0).getItemDamage() };
             } else {
-                return new Object[] {false};
+                return new Object[] { false };
             }
         } else {
-            return new Object[] {false};
+            return new Object[] { false };
         }
     }
 
@@ -418,22 +411,18 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
     public Object[] getColorInkLevel(Context context, Arguments args) {
         if (getStackInSlot(1) != null) {
             if (getStackInSlot(1).getItem() instanceof PrinterInkColor) {
-                return new Object[] {
-                    OpenPrinter.cfg.printerInkUse - getStackInSlot(1).getItemDamage()
-                };
+                return new Object[] { OpenPrinter.cfg.printerInkUse - getStackInSlot(1).getItemDamage() };
             } else {
-                return new Object[] {false};
+                return new Object[] { false };
             }
         } else {
-            return new Object[] {false};
+            return new Object[] { false };
         }
     }
 
     @Callback(direct = true)
     public Object[] charCount(Context context, Arguments args) {
-        return new Object[] {
-            args.checkString(0).replaceAll("(?:§[0-9a-fk-or])+", "").length()
-        };
+        return new Object[] { args.checkString(0).replaceAll("(?:§[0-9a-fk-or])+", "").length() };
     }
 
     @Callback
@@ -442,7 +431,7 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
         colors.clear();
         align.clear();
         pageTitle = "";
-        return new Object[] {true};
+        return new Object[] { true };
     }
 
     @Override
@@ -512,8 +501,7 @@ public class PrinterTE extends TileEntity implements Environment, IInventory, IS
                 return true;
             }
         } else if (i == 2) {
-            if (itemstack.getItem() instanceof PrinterPaperRoll
-                    || itemstack.getItem().equals(Items.paper)
+            if (itemstack.getItem() instanceof PrinterPaperRoll || itemstack.getItem().equals(Items.paper)
                     || itemstack.getItem().equals(Items.name_tag)) {
                 return true;
             }

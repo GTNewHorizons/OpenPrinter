@@ -1,22 +1,25 @@
 package pcl.openprinter.tileentityrender;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.obj.WavefrontObject;
+
 import org.lwjgl.opengl.GL11;
+
 import pcl.openprinter.OpenPrinter;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class PrinterRenderer extends TileEntitySpecialRenderer {
+
     private float scale = 1;
     WavefrontObject model = null;
     private final ResourceLocation theTexture = new ResourceLocation("openprinter", "textures/obj/OpenPrinter.png");
 
     public PrinterRenderer() {
-        model = (WavefrontObject)
-                AdvancedModelLoader.loadModel(new ResourceLocation("openprinter", "models/printer.obj"));
+        model = (WavefrontObject) AdvancedModelLoader
+                .loadModel(new ResourceLocation("openprinter", "models/printer.obj"));
     }
 
     @Override

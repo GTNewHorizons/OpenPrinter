@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -49,9 +50,7 @@ public class PaperGUI extends GuiScreen {
     public void drawScreen(int i, int j, float f) {
         if (stack.hasTagCompound()) {
             PaperGUI.isBook = stack.getTagCompound().hasKey("book");
-            this.pageCount = stack.getTagCompound()
-                    .getTagList("pages", Constants.NBT.TAG_STRING)
-                    .tagCount();
+            this.pageCount = stack.getTagCompound().getTagList("pages", Constants.NBT.TAG_STRING).tagCount();
         }
 
         this.currPage = 0;
@@ -76,8 +75,7 @@ public class PaperGUI extends GuiScreen {
                 String output = stack.stackTagCompound.getString("line" + x);
                 String[] parts = output.split("∞");
                 if (parts.length > 1) {
-                    Integer outleng =
-                            parts[0].replaceAll("(?:§[0-9a-fk-or])+", "").length();
+                    Integer outleng = parts[0].replaceAll("(?:§[0-9a-fk-or])+", "").length();
                     if (outleng > 30) {
                         parts[0] = limit(parts[0], 30);
                     }
@@ -114,8 +112,7 @@ public class PaperGUI extends GuiScreen {
                         String output = stack.stackTagCompound.getString("line" + x);
                         String[] parts = output.split("∞");
                         if (parts.length > 1) {
-                            Integer outleng = parts[0].replaceAll("(?:§[0-9a-fk-or])+", "")
-                                    .length();
+                            Integer outleng = parts[0].replaceAll("(?:§[0-9a-fk-or])+", "").length();
                             if (outleng > 30) {
                                 parts[0] = limit(parts[0], 30);
                             }
@@ -129,7 +126,10 @@ public class PaperGUI extends GuiScreen {
                                         color);
                             } else {
                                 mc.fontRenderer.drawString(
-                                        parts[0], width / 2 - xSizeOfTexture / 2 + 6, height / 2 - offset, color);
+                                        parts[0],
+                                        width / 2 - xSizeOfTexture / 2 + 6,
+                                        height / 2 - offset,
+                                        color);
                             }
                             offset = offset - 10;
                         }
@@ -139,8 +139,7 @@ public class PaperGUI extends GuiScreen {
                     // height / 2 - 110, 0x000000);
                     for (int x = 0; x <= stack.stackTagCompound.func_150296_c().size(); x++) {
                         String output = stack.stackTagCompound.getString("line" + x);
-                        Integer outleng =
-                                output.replaceAll("(?:§[0-9a-fk-or])+", "").length();
+                        Integer outleng = output.replaceAll("(?:§[0-9a-fk-or])+", "").length();
                         if (outleng > 30) {
                             output = limit(output, 30);
                         }
@@ -153,8 +152,8 @@ public class PaperGUI extends GuiScreen {
                                     height / 2 - offset,
                                     color);
                         } else {
-                            mc.fontRenderer.drawString(
-                                    output, width / 2 - xSizeOfTexture / 2 + 6, height / 2 - offset, color);
+                            mc.fontRenderer
+                                    .drawString(output, width / 2 - xSizeOfTexture / 2 + 6, height / 2 - offset, color);
                         }
                         offset = offset - 10;
                     }
