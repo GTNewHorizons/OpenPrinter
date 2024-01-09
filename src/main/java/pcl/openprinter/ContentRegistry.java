@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import pcl.openprinter.blocks.BlockFileCabinet;
 import pcl.openprinter.blocks.BlockPrinter;
 import pcl.openprinter.blocks.BlockShredder;
@@ -24,7 +25,6 @@ import pcl.openprinter.items.PrinterPaperRollRecipe;
 import pcl.openprinter.tileentity.FileCabinetTE;
 import pcl.openprinter.tileentity.PrinterTE;
 import pcl.openprinter.tileentity.ShredderTE;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ContentRegistry {
 

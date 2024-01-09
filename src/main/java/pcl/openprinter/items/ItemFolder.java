@@ -6,10 +6,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import pcl.openprinter.OpenPrinter;
-import pcl.openprinter.gui.GuiFolderView;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import pcl.openprinter.OpenPrinter;
+import pcl.openprinter.gui.GuiFolderView;
 
 public class ItemFolder extends Item {
 
