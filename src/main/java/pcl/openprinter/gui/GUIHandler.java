@@ -7,10 +7,12 @@ package pcl.openprinter.gui;
  * @author Caitlyn
  *
  */
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.network.IGuiHandler;
 import pcl.openprinter.items.FolderContainer;
 import pcl.openprinter.items.FolderInventory;
 import pcl.openprinter.tileentity.FileCabinetContainer;
@@ -19,7 +21,6 @@ import pcl.openprinter.tileentity.PrinterContainer;
 import pcl.openprinter.tileentity.PrinterTE;
 import pcl.openprinter.tileentity.ShredderContainer;
 import pcl.openprinter.tileentity.ShredderTE;
-import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler {
 

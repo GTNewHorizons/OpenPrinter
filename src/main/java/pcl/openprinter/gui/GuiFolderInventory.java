@@ -13,12 +13,12 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import pcl.openprinter.items.FolderContainer;
 import pcl.openprinter.items.FolderInventory;
 import pcl.openprinter.network.MessageGUIFolder;
 import pcl.openprinter.network.PacketHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class GuiFolderInventory extends GuiContainer {
 

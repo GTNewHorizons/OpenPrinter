@@ -3,9 +3,9 @@ package pcl.openprinter.client;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-import pcl.openprinter.ContentRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import pcl.openprinter.ContentRegistry;
 
 public class CreativeTab extends CreativeTabs {
 

@@ -4,6 +4,7 @@ package pcl.openprinter;
  * @author Caitlyn
  *
  */
+
 import java.net.URL;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,10 +14,6 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import pcl.openprinter.client.CreativeTab;
-import pcl.openprinter.gui.GUIHandler;
-import pcl.openprinter.items.PrinterPaperRoll;
-import pcl.openprinter.network.PacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -28,6 +25,10 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import pcl.openprinter.client.CreativeTab;
+import pcl.openprinter.gui.GUIHandler;
+import pcl.openprinter.items.PrinterPaperRoll;
+import pcl.openprinter.network.PacketHandler;
 
 @Mod(
         modid = OpenPrinter.MODID,

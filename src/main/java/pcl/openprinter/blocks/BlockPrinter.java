@@ -21,11 +21,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import pcl.openprinter.OpenPrinter;
-import pcl.openprinter.tileentity.PrinterTE;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import pcl.openprinter.OpenPrinter;
+import pcl.openprinter.tileentity.PrinterTE;
 
 public class BlockPrinter extends BlockContainer {
 

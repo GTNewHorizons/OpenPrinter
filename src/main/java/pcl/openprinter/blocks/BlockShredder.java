@@ -17,10 +17,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import pcl.openprinter.OpenPrinter;
-import pcl.openprinter.tileentity.ShredderTE;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import pcl.openprinter.OpenPrinter;
+import pcl.openprinter.tileentity.ShredderTE;
 
 public class BlockShredder extends BlockContainer {
 

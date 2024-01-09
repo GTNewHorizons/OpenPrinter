@@ -8,8 +8,8 @@ import net.minecraftforge.client.model.obj.WavefrontObject;
 
 import org.lwjgl.opengl.GL11;
 
-import pcl.openprinter.OpenPrinter;
 import cpw.mods.fml.client.FMLClientHandler;
+import pcl.openprinter.OpenPrinter;
 
 public class PrinterRenderer extends TileEntitySpecialRenderer {
 
