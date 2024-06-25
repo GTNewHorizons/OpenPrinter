@@ -8,9 +8,5 @@
 	"updateUrl": "",
 	"authors": ["Michiyo"],
 	"credits": "Michiyo",
-	"logoFile": "",
-	"requiredMods": [ "Forge" ],
-	"dependencies": [ "OpenComputers" ],
-	"dependants": [ ],
-	"useDependencyInformation": "true"
+	"logoFile": ""
 }]
