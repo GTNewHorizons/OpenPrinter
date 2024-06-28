@@ -1,5 +1,5 @@
 // Add your dependencies here
 
 dependencies {
-	api 'com.github.GTNewHorizons:OpenComputers:1.10.5-GTNH:dev'
+	api 'com.github.GTNewHorizons:OpenComputers:1.10.11-GTNH:dev'
 }
